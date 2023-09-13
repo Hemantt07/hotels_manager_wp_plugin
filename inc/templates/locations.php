@@ -66,7 +66,7 @@ $locations = $wpdb->get_results($query);
                                 ?>
                             </td>
                             <td class="dt-body-center shortcode">
-                                <strong><code class="shortcode"><?= '[loc_single_'.$location->id.']' ?></code></strong>
+                                <strong><code class="shortcode"><?= '[location id='.$location->id.']' ?></code></strong>
                             </td>
                             <td class="dt-body-center status <?= ($location->status == '1') ? ('active') : ('inactive')?>">
                                 <?= ($location->status == '1') ? ('Active') : ('Inactive') ?>
