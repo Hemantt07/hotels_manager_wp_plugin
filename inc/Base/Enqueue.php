@@ -2,7 +2,7 @@
 /**
  * Enqueue scripts 
  *
- * @package  Custom plugin
+ * @package Custom Widget plugin
  */
 
 namespace CG\Base;
@@ -16,7 +16,7 @@ class Enqueue {
 
 	function enqueue() {
 		// enqueue all our scripts
-		wp_enqueue_style( 'pluginstyle', ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/admin.css' );
+		wp_enqueue_style( 'custom-widget-pluginstyle', ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/admin.css' );
 		wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js' );
 		wp_enqueue_script( 'form-script', ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/form.js' );
 		

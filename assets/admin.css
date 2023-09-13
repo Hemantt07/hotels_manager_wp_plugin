@@ -10,6 +10,10 @@
     padding: 14px 12px;
 }
 
+.wrap {
+    padding-right: 30px;
+}
+
 .wrap .form-status.updated,
 .wrap .form-status.error {
     margin: 10px 0px;
@@ -21,57 +25,108 @@
     display: none;
 }
 
-#locations-dashboard {
+.locations-services-table {
     width: 100%;
     margin-top: 20px;
 }
 
-#locations-dashboard tr {
+.locations-services-table tr {
     margin: 10px 0;
 }
 
-#locations-dashboard td.active {
+.locations-services-table td.active {
     color: #008000;
     font-weight: bold;
 }
 
-#locations-dashboard td.inactive {
+.locations-services-table td.inactive {
     color: #ff0000;
     font-weight: bold;
 }
 
-#locations-dashboard .check-column {
+.locations-services-table .check-column {
     padding: 11px 0 8px 3px;
 }
 
-#locations-dashboard .check-column input {
+.locations-services-table .check-column input {
     margin: 0 0 0 8px;
 }
 
-#locations-dashboard .page-title-action {
+.locations-services-table .page-title-action {
     display: block;
     width: max-content;
     margin: auto;
 }
 
-#locations-dashboard td.shortcode {
-    
-}
-
-#locations-dashboard  th {
+.locations-services-table  th {
     font-weight: bold;
 }
 
-#locations-dashboard td, #locations-dashboard th {
-    text-align: center;
+.locations-services-table th.status {
+    width: 7%;
+}
+
+.locations-services-table th.shortcode {
+    width: 10%;
+}
+
+.locations-services-table th.title {
+    width: auto;
+}
+
+.locations-services-table th.address {
+    width: 20%;
+}
+
+.locations-services-table th.services {
+    width: 20%;
+}
+
+.locations-services-table code.shortcode {
+    margin: 0 1px 0 -4px;
 }
 
 .location_service_form {
+    display: flex;
+    width: 100%;
     border: 1px solid #d9d9d9;
     box-shadow: 0 0 17px 0px #dfdfdf;
     padding: 30px 20px;
     margin-top: 20px;
     margin-left: -10px;
+}
+
+.location_service_form .left {
+    width: 50%;
+}
+
+.location_service_form .right {
+    width: 50%;
+}
+
+.location_service_form .right .imageWrap {
+    width: 100%;
+    padding: 0px;
+}
+
+.location_service_form .right .imageWrap img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    height: 245px;
+    margin: auto;
+    border: 1px solid #dfdfdf;
+    box-shadow: 0 0 17px 0px #dfdfdf;
+}
+
+.location_service_form .right .imageWrap #location_image {
+    display: none;
+}
+
+.location_service_form .right .imageWrap label.upload-picture {
+    margin: 15px auto;
+    display: block;
+    width: max-content;
 }
 
 .location_service_form .form-group {

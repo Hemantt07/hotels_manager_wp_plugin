@@ -43,8 +43,14 @@ class Admin {
 	}
 
 	public function admin_index() {
-		if (isset($_GET['loc_type']) && ($_GET['loc_type'] == 'new' || $_GET['loc_type'] == 'edit')) {
+		if (isset($_GET['loc_type']) && ($_GET['loc_type'] == 'new')) {
+
 			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/templates/add_location_page.php';
+
+		} else if ( isset($_GET['loc_type']) && ($_GET['loc_type'] == 'edit') && isset($_GET['loc_id']) ) {
+
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/templates/update_location_page.php';
+			
 		} else {
 			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/templates/locations.php';
 		}

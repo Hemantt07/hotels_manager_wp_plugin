@@ -9,7 +9,7 @@ use CG\Widgets\Services_widget;
 
 Class Register_widget{
 
-	public function __construct() {
+	public function register () {
         add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_location_widgets' ] );
         add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_services_widgets' ] );
     }

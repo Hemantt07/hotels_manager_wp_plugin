@@ -16,25 +16,29 @@ class Activate {
     public function createTable() {
         global $wpdb;
         $table1 = $wpdb->prefix . 'locations_table';
-        $sql = "CREATE TABLE IF NOT EXISTS $table1(
-            `id` int(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            `title` varchar DEFAULT NULL CHECK (json_valid(`title`)),
-            `address` varchar DEFAULT NULL CHECK (json_valid(`address`)),
-            `services` longtext DEFAULT NULL CHECK (json_valid(`services`)),
-            `status` tinyint(1) DEFAULT 0
-        );";
-
-        $wpdb->query($sql);
-
         $table2 = $wpdb->prefix . 'services_table';
-        $sql2 = "CREATE TABLE IF NOT EXISTS $table2(
-            `id` int(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-            `service_data` longtext DEFAULT NULL CHECK (json_valid(`service_data`)),
-            `facilties` longtext DEFAULT NULL CHECK (json_valid(`facilties`)),
-            `shortcode` longtext DEFAULT NULL CHECK (json_valid(`shortcode`)),
-            `status` tinyint(1) DEFAULT 0
+
+        $sql1 = "CREATE TABLE IF NOT EXISTS $table1 (
+            id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+            title varchar(255) DEFAULT NULL,
+            address varchar(255) DEFAULT NULL,
+            services longtext DEFAULT NULL,
+            image_url varchar(255) DEFAULT NULL,
+            status tinyint(1) DEFAULT 0,
+            PRIMARY KEY (id)
         );";
 
+        $sql2 = "CREATE TABLE IF NOT EXISTS $table2 (
+            id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+            service_data longtext DEFAULT NULL,
+            facilties longtext DEFAULT NULL,
+            shortcode longtext DEFAULT NULL,
+            status tinyint(1) DEFAULT 0,
+            PRIMARY KEY (id)
+        );";
+
+        $wpdb->query($sql1);
         $wpdb->query($sql2);
+
     }
 }

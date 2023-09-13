@@ -17,7 +17,6 @@ final class Init {
 			Base\Enqueue::class,
 			Base\SettingLinks::class,
 			Base\Register_widget::class,
-			Base\Publish::class,
 			Base\CustomAjax::class,
 		];
 	}

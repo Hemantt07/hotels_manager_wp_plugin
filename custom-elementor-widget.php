@@ -7,7 +7,7 @@
  * Description: Add a custom widget for managing locations and services.
  * Version: 1.0.0
  * Author: Hemant Dhiman
- * Author URI:  https://www.cybertrontechnologies.com/
+ * Author URI: https://hemantt07.netlify.app/
  *   
  */
 
