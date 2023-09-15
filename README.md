@@ -14,7 +14,7 @@ The Location and Services Manager is a custom WordPress plugin designed to enhan
 
 ## Installation
 
-1. Download the plugin ZIP file from [GitHub Releases](https://github.com/your-username/your-plugin/releases) or [WordPress Plugin Repository](https://wordpress.org/plugins/your-plugin).
+1. Download the plugin ZIP file from [GitHub Releases](https://github.com/Hemantt07/custom_plugin_wp) or [WordPress Plugin Repository](https://github.com/Hemantt07/custom_plugin_wp).
 2. Log in to your WordPress admin dashboard.
 3. Go to **Plugins** > **Add New**.
 4. Click the **Upload Plugin** button and select the ZIP file you downloaded.
@@ -59,7 +59,7 @@ If you encounter any issues or need assistance, please reach out to our support 
 
 ## Credits
 
-- Developed by [Your Name](https://www.example.com).
+- Developed by [Hemant Dhiman](https://hemantt07.netlify.app/).
 - Special thanks to the WordPress and Elementor communities for their support and inspiration.
 
 ## Changelog

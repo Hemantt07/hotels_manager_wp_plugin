@@ -3,7 +3,7 @@
  * @package Custom Elementor Widget
  *
  */
-namespace CG\Base;
+namespace LSM\Base;
 
 class Activate {
 

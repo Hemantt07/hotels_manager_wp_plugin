@@ -11,6 +11,6 @@
     "minimum-stability": "dev",
     "require": {},
     "autoload": {
-        "psr-4": {"CG\\": "./inc"}
+        "psr-4": {"LSM\\": "./inc"}
     }
 }

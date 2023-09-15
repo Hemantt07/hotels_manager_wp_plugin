@@ -4,7 +4,7 @@
  *
  */
 
-namespace CG\Base;
+namespace LSM\Base;
 
 class SettingLinks{
 

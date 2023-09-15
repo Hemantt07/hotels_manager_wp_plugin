@@ -2,9 +2,9 @@
 /**
  * @package  Custom plugin
  */
-namespace CG;
+namespace LSM;
 
-use CG\Base\Locations_widget;
+use LSM\Base\Locations_widget;
 
 final class Init {
 	/**
@@ -18,6 +18,7 @@ final class Init {
 			Base\SettingLinks::class,
 			Base\Register_widget::class,
 			Base\CustomAjax::class,
+			Base\Shortcodes::class,
 		];
 	}
 

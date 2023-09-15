@@ -2,7 +2,7 @@
 /**
  * Service widget
 */
-namespace CG\Widgets;
+namespace LSM\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
@@ -16,11 +16,10 @@ class Services_widget extends Widget_Base {
     }
 
     public function get_icon() {
-        return 'eicon-navigation-vertical';
+        return 'eicon-price-table';
     }
 
     public function get_categories() {
-        // TODO : create own catgeory
         return [ 'basic' ];
     }
 

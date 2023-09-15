@@ -3,7 +3,7 @@
  * @package  Calculaor
  * Admin for pages
  */
-namespace CG\Pages;
+namespace LSM\Pages;
 
 class Admin {
 	

@@ -3,7 +3,7 @@
  * @package Calculator
  *
  */
-namespace CG\Base;
+namespace LSM\Base;
 /**
 * 
 */

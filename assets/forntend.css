@@ -1,0 +1,67 @@
+.location-short {
+    max-width: 1140px;
+    margin: 20px auto;
+  }
+  .location-short img {
+    max-height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50px;
+  }
+  .location-short .details {
+    display: flex;
+    padding: 10px 30px;
+  }
+  .location-short h2.loc_title {
+    font-size: 27px;
+    font-weight: 300;
+    margin: 10px auto;
+  }
+  .location-short .left-block {
+    width: 60%;
+  }
+  .location-short .right-block {
+    width: 40%;
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+  }
+  .location-short .loc_address {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.3;
+    max-width: 503px;
+  }
+  .location-short .services ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .location-short .services ul li.service {
+    margin: 0;
+    padding: 8px 13px 8px 0;
+    margin-right: 15px;
+    border-radius: 8px;
+    color: #225266;
+    line-height: 1;
+  }
+  .location-short .right-block svg {
+    fill: #fff;
+    margin-right: 5px;
+  }
+  .location-short .book-now {
+    background: #e05e0f;
+    color: #fff;
+    font-weight: 600;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 10px 90px;
+    border-radius: 30px;
+  }
+  .location-short .right-block p {
+    margin: 0 0 15px 0;
+    text-align: center;
+  }
+  

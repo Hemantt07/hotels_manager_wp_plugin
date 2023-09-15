@@ -26,8 +26,8 @@ define ( 'ELEMENTOR_WIDGET_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define ( 'ELEMENTOR_WIDGET_PLUGIN_NAME', plugin_basename( __FILE__ ) );
 define ( 'ELEMENTOR_WIDGET_PLUGIN_FILE', plugin_basename( dirname( __FILE__, 3 ) ).'/custom-elementor-widget.php');
 
-use CG\Base\Activate;
-use CG\Base\Deactivate;
+use LSM\Base\Activate;
+use LSM\Base\Deactivate;
 
 function activate_elementor_widget_plugin() {
     Activate::activate();
@@ -40,6 +40,6 @@ function deactivate_elementor_widget_plugin() {
 register_activation_hook( __FILE__ , 'activate_elementor_widget_plugin' );
 register_deactivation_hook( __FILE__ , 'deactivate_elementor_widget_plugin' );
 
-if ( class_exists( 'CG\\Init' ) ) {
-	CG\Init::register_services();
+if ( class_exists( 'LSM\\Init' ) ) {
+	LSM\Init::register_services();
 }

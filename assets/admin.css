@@ -67,17 +67,14 @@
 }
 
 .locations-services-table th.shortcode {
-    width: 10%;
+    width: 15%;
 }
 
 .locations-services-table th.title {
     width: auto;
 }
 
-.locations-services-table th.address {
-    width: 20%;
-}
-
+.locations-services-table th.address,
 .locations-services-table th.services {
     width: 20%;
 }
@@ -96,10 +93,7 @@
     margin-left: -10px;
 }
 
-.location_service_form .left {
-    width: 50%;
-}
-
+.location_service_form .left,
 .location_service_form .right {
     width: 50%;
 }
@@ -159,6 +153,7 @@
     margin-bottom: 1.5rem;
 }
 
+td.dt-body-center.image img,
 .location_service_form .form-group textarea,
 .location_service_form .form-group input[type=text] {
     width: 70%;
@@ -246,7 +241,7 @@
 .location_service_form .locFormError .required{
     display: block;
     position: absolute;
-    left: 100%;
+    right: 10px;
     padding-left: 10px;
     color: #f00;
 }

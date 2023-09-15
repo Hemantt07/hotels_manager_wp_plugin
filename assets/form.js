@@ -79,7 +79,19 @@ jQuery(document).ready(function($) {
             var loc_address = $('#address').val();
             var loc_services = [];
             var status = $('#status').is(':checked');
-            var imageFile = $('#image-file')[0].files[0]
+            var imageFile = $('#location_image')[0].files[0]
+            if (imageFile instanceof File) {
+                var reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    var arrayBuffer = event.target.result;
+                    // Handle the arrayBuffer here
+                    // console.log(arrayBuffer)
+                };
+            
+                reader.readAsArrayBuffer(imageFile);
+            }
+
 
             var i = 0;
             $('#services input[type=checkbox]').each(function(){
@@ -98,13 +110,15 @@ jQuery(document).ready(function($) {
     
             } else {
                 var formData = {
-                    'address'   : loc_address,
-                    'title'     : loc_title,
-                    'status'    : status,
-                    'services'  : loc_services,
-                    'image_url' : imageFile
+                    'address'       : loc_address,
+                    'title'         : loc_title,
+                    'status'        : status,
+                    'services'      : loc_services,
+                    'image_file'    : imageFile
                 }
                 
+                console.log(imageFile)
+
                 $('#loader').css('display', 'flex');
 
                 $.ajax({

@@ -5,9 +5,9 @@
  * @package  Custom plugin
  */
 
-namespace CG\Base;
+namespace LSM\Base;
 
-use CG\Base\Publish;
+use LSM\Base\Publish;
 
 class CustomAjax {
 
@@ -19,8 +19,8 @@ class CustomAjax {
 
     function add_location_handler() {
         $data = $_POST['formData'];
-        
-        $res = Publish::create_location( $data );
+        $img = $_FILES['location_image'];
+        $res = Publish::create_location( $data, $img );
 
         $response = array(
             'status' => $res[0],
