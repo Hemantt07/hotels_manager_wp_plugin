@@ -32,7 +32,6 @@ class Activate {
             id int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
             service_data longtext DEFAULT NULL,
             facilties longtext DEFAULT NULL,
-            shortcode longtext DEFAULT NULL,
             status tinyint(1) DEFAULT 0,
             PRIMARY KEY (id)
         );";

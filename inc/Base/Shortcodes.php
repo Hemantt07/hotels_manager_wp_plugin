@@ -19,7 +19,7 @@ Class Shortcodes{
             global $wpdb;
 
             $location_table = $wpdb->prefix . 'locations_table';
-            $query = "SELECT * FROM $location_table WHERE `id` =".$_GET['single_loc_id'];
+            $query = "SELECT * FROM $location_table WHERE `id` =".$_GET['single_loc_id']." AND `status` = 1";
             $location = $wpdb->get_results($query)[0];
             
             $jsonString = '{"data": ' . $location->services . '}';

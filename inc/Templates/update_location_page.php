@@ -10,6 +10,9 @@ if ( isset($_GET['loc_id']) ) {
     $location = [];
 }
 
+$services_table = $wpdb->prefix . 'services_table';
+$query = "SELECT * FROM $services_table";
+$services = $wpdb->get_results($query);
 ?>
 <div class="main wrap">
     <h1 class="wp-heading-inline">Update (<?= $location->title ?>)</h1>
@@ -23,7 +26,6 @@ if ( isset($_GET['loc_id']) ) {
                 <input type="text" class="form-control" id="location-title" name="location-title" value="<?= $location->title ?>">
                 <div class="required">Required*</div>
             </div>
-
             
             <div class="form-group address">
                 <label class="main-label" for="address">Address :</label>
@@ -31,24 +33,15 @@ if ( isset($_GET['loc_id']) ) {
                 <div class="required">Required*</div>
             </div>
 
-            
             <div class="checkbox form-group services-group">
                 <label class="main-label">Choose Services :</label><div class="required">Required*</div>
                 <div class="services" id="services">
-                    <?php
-                        $jsonString = '{"data": ' . $location->services . '}';
-                        $services = json_decode($jsonString, true);
-                        $servicesArr = $services['data'];
-                    ?>
-                    <label><input type="checkbox" value="service_1" <?= in_array('service_1', $servicesArr) ? 'checked' : '' ?> >Service 1</label>
-                    <label><input type="checkbox" value="service_2" <?= in_array('service_2', $servicesArr) ? 'checked' : '' ?> >Service 2</label>
-                    <label><input type="checkbox" value="service_3" <?= in_array('service_3', $servicesArr) ? 'checked' : '' ?> >Service 3</label>
-                    <label><input type="checkbox" value="service_4" <?= in_array('service_4', $servicesArr) ? 'checked' : '' ?> >Service 4</label>
-                    <label><input type="checkbox" value="service_5" <?= in_array('service_5', $servicesArr) ? 'checked' : '' ?> >Service 5</label>
-                    <label><input type="checkbox" value="service_6" <?= in_array('service_6', $servicesArr) ? 'checked' : '' ?> >Service 6</label>
+                    <?php   $selectedServices = explode(',',$location->services); 
+                            foreach ($services as $key => $service):?>
+                                <label><input type="checkbox" <?= in_array($service->service_data, $selectedServices) ? 'checked' : ''; ?> value="<?=$service->service_data?>"><?=$service->service_data?></label>
+                    <?php   endforeach ?>
                 </div>
             </div>
-
             
             <div class="form-group status">
                 <label class="main-label" for="status">Status</label>

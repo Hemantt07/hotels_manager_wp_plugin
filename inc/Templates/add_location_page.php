@@ -1,12 +1,20 @@
 <?php
-// Add Location page
+/**
+ * @package Custom Elementor Widget
+ *
+ * Locations Dashboard
+ */
+global $wpdb;
+$services_table = $wpdb->prefix . 'services_table';
+$query = "SELECT * FROM $services_table";
+$services = $wpdb->get_results($query);
 ?>
 <div class="main wrap">
     <h1 class="wp-heading-inline">Add Location</h1>
     <a href="<?= admin_url('admin.php?page=location-services-manager') ?>" class="page-title-action">Locations Dashboard</a>
     <div class="form-status"></div>
 
-    <form id="<?= isset($_GET['loc_id']) ? 'update-location' : 'add-locations' ?>" class="location_service_form" >    
+    <form id="add-locations" class="location_service_form" >    
         <div class="left">
             <div class="form-group location-title">
                 <label class="main-label" for="location-title">Location Title :</label>
@@ -14,23 +22,18 @@
                 <div class="required">Required*</div>
             </div>
 
-            
             <div class="form-group address">
                 <label class="main-label" for="address">Address :</label>
                 <textarea type="text" class="form-control" id="address" name="address" placeholder="Add Location address"></textarea>
                 <div class="required">Required*</div>
             </div>
 
-            
             <div class="checkbox form-group services-group">
                 <label class="main-label">Choose Services :</label><div class="required">Required*</div>
                 <div class="services" id="services">
-                    <label><input type="checkbox" value="service_1">Service 1</label>
-                    <label><input type="checkbox" value="service_2">Service 2</label>
-                    <label><input type="checkbox" value="service_3">Service 3</label>
-                    <label><input type="checkbox" value="service_4">Service 4</label>
-                    <label><input type="checkbox" value="service_5">Service 5</label>
-                    <label><input type="checkbox" value="service_6">Service 6</label>
+                    <?php foreach ($services as $key => $service):?>
+                        <label><input type="checkbox" value="<?=$service->service_data?>"><?=$service->service_data?></label>
+                    <?php endforeach ?>
                 </div>
             </div>
 

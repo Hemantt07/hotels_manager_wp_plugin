@@ -1,4 +1,6 @@
 jQuery(document).ready(function($) {
+    const crossIcon = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABJUlEQVR4nO3YT0sCQRyH8YeuUu0KG/RHUG8efAceetFBJ6noEKUI6iG1wHolxcIYg6wi67Qzs3w/IHga92F09zeCiIiIiMg/6QEPwKXDNRvAHXBLhYbADzAHLhysdwo8W2ueUJEMmJoPfj9yZ/KdeDRrfQNdKpYCY3MBC+DKQUQHT46JsSO+fEYUxSwPjMkjnkKKsGNGVsw1u50BLyFGFMWsdsQEH7GR7Ik534poE7hkK+YmxoiNJjAxF/4BvJr3n0CLyCTAmwnIX+uYdqJ2Ic06fLWSgjtXdD/2dM/tN5pnSHrA0z3Y0aTMvBVsTFpiAg5mfHc9xnuNyaxT4qLkKbFhzv7eTocZMHN41PUWM6zLnw99E+Miwo65BwYO1xQRERER4c8v6Th7MMbV15kAAAAASUVORK5CYII=">';
+
     const removeErrors = ()=>{
         $(this).on('keydown', function () {
             $('.wrap .form-status').removeClass('error');
@@ -8,6 +10,24 @@ jQuery(document).ready(function($) {
             $('#address').parent().removeClass('locFormError');
             $('#services').parent().removeClass('locFormError');
         });
+    }
+
+    if ( $('#add-faciltiy').length != 0 ) {
+        $('#add-faciltiy').on('click', function(){
+            var fac = $('#facility-title').val();
+
+            if ( fac == '' ) {
+                $('#facility-title').parent().addClass('locFormError')
+            } else {
+                $('#facility-title').parent().removeClass('locFormError')
+                $('#facilities-list').append('<li class="facility">'+ fac +''+crossIcon+'</span></li>');
+                $('#facility-title').val('');
+            }
+        })
+
+        $('#facilities-list').on('click', '.facility img', function() {
+            $(this).closest('.facility').remove();
+        })
     }
 
     const updateLocation = ()=>{
@@ -71,7 +91,6 @@ jQuery(document).ready(function($) {
     }
 
     const addLocation = ()=>{
-        
         $('#add-locations').submit(function(e) {
             e.preventDefault();
             removeErrors();
@@ -141,12 +160,122 @@ jQuery(document).ready(function($) {
                     }
                 });
             }
+        });
+    }
+
+    const add_services = () => {
+        $('#add-services').on('submit', function(e){
+            e.preventDefault();
+            removeErrors();
+            var service_title = $('#service-title').val();
+            var facilities = [];
+            var status = $('#status').is(':checked');
+            var i = 0;
+            $('#facilities-list li.facility').each(function(){
+                facilities[i] = $(this).text();
+                i++;
+            })
     
+            if ( service_title == '' || facilities[0] == undefined ) {
+                $('.wrap .form-status').addClass('error');
+                $('.wrap .form-status').text('Fill the required fields');
+                $('#service-title').parent().addClass('locFormError')
+                $('#facility-title').parent().addClass('locFormError')
+    
+            } else {
+                var formData = {
+                    'title'         : service_title,
+                    'status'        : status,
+                    'facilities'     : facilities,
+                }
+
+                $('#loader').css('display', 'flex');
+
+                $.ajax({
+                    type: 'POST',
+                    url: customAjax.ajaxurl, 
+                    data: {
+                        action: 'add_service_handler', 
+                        nonce: customAjax.nonce, 
+                        formData: formData
+                    },
+                    success: function(response) {
+                        $('#loader').css('display', 'none');
+                        if ( response['status'] == 'failed' ) {
+                            $('.wrap .form-status').addClass('error');
+                        } else {
+                            $('.wrap .form-status').addClass('updated');
+                        }
+                        $('.wrap .form-status').text(response['message']);
+                    },
+                    error: function(response) {
+                        $('#loader').css('display', 'none');
+                        $('.wrap .form-status').addClass('error');
+                        $('.wrap .form-status').text(response['message']);
+                    }
+                });
+            }
+        });
+    }
+
+    const update_services = () => {
+        $('#update-service').on('submit', function(e){
+            e.preventDefault();
+            removeErrors();
+            var service_id = $(this).data('id');
+            var service_title = $('#service-title').val();
+            var facilities = [];
+            var status = $('#status').is(':checked');
+            var i = 0;
+            $('#facilities-list li.facility').each(function(){
+                facilities[i] = $(this).text();
+                i++;
+            })
+    
+            if ( service_title == '' || facilities[0] == undefined ) {
+                $('.wrap .form-status').addClass('error');
+                $('.wrap .form-status').text('Fill the required fields');
+                $('#service-title').parent().addClass('locFormError')
+                $('#facility-title').parent().addClass('locFormError')
+    
+            } else {
+                var formData = {
+                    'title'         : service_title,
+                    'status'        : status,
+                    'facilities'    : facilities,
+                    'id'            : service_id,
+                }
+
+                $('#loader').css('display', 'flex');
+
+                $.ajax({
+                    type: 'POST',
+                    url: customAjax.ajaxurl, 
+                    data: {
+                        action: 'update_service_handler', 
+                        nonce: customAjax.nonce, 
+                        formData: formData
+                    },
+                    success: function(response) {
+                        $('#loader').css('display', 'none');
+                        if ( response['status'] == 'failed' ) {
+                            $('.wrap .form-status').addClass('error');
+                        } else {
+                            $('.wrap .form-status').addClass('updated');
+                        }
+                        $('.wrap .form-status').text(response['message']);
+                    },
+                    error: function(response) {
+                        $('#loader').css('display', 'none');
+                        $('.wrap .form-status').addClass('error');
+                        $('.wrap .form-status').text(response['message']);
+                    }
+                });
+            }
         });
     }
 
     // Run Functions
-
     if ( $('#add-locations') ) {
         $('#location_image').on('change', function(){
             var imgsrc = URL.createObjectURL( $('#location_image')[0].files[0] );
@@ -164,20 +293,32 @@ jQuery(document).ready(function($) {
         $('#update-locations #services input[type=checkbox]').each(function () { removeErrors() });
         updateLocation();
     }
+ 
+    if ( $('#add-services').length != 0 ) {
+        $('#update-locations input[type=text]').each(function () { removeErrors() });
+        add_services();       
+    }
+
+    if ( $('#update-service').length != 0 ) {
+        $('#update-locations input[type=text]').each(function () { removeErrors() });
+        update_services();
+    }
 
     if ( $('.submitdelete') ) {
         $('.submitdelete').each(function(){
-            var id = $(this).attr('data-id')
+            var id = $(this).data('id');
+            var type = $(this).data('type');
             $(this).click((e)=>{
                 e.preventDefault();
                 var confirmDelete = confirm('Do you want to delete this location ?');
+                
                 if ( confirmDelete ) {
                     $('#loader').css('display', 'flex');
                     $.ajax({
                         type: 'POST',
                         url: customAjax.ajaxurl, 
                         data: {
-                            action: 'delete_location_handler', 
+                            action: 'delete_'+type+'_handler', 
                             nonce: customAjax.nonce, 
                             id: id
                         },

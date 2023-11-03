@@ -34,7 +34,7 @@ $locations = $wpdb->get_results($query);
                 <?php foreach ($locations as $key => $location) : ?>
                     <tr role="row" id="<?= $location->id ?>">
                             <td class="check-column">
-                                <input id="cb-select-1" type="checkbox" name="post[]" value="<?= $location->id ?>">
+                                <input class="cb-select-1" type="checkbox" name="post[]" value="<?= $location->id ?>">
                             </td>
                             <td class="dt-body-center title">
                                 <a href="<?= admin_url('admin.php?page=location-services-manager&loc_type=edit&loc_id='.$location->id) ?>"
@@ -48,7 +48,7 @@ $locations = $wpdb->get_results($query);
                                         </a>
                                     </span> | 
                                     <span class="trash">
-                                        <a href="" class="submitdelete" data-id="<?= $location->id ?>">
+                                        <a href="" class="submitdelete" data-id="<?= $location->id ?>" data-type="location">
                                             Trash
                                         </a>
                                     </span>
@@ -56,13 +56,11 @@ $locations = $wpdb->get_results($query);
                             </td>
                             <td class="dt-body-center address"><?= $location->address ?></td>
                             <td class="dt-body-center services">
-                                <?php
-                                    $jsonString = '{"data": ' . $location->services . '}';
-                                    $services = json_decode($jsonString, true);
-                                    $servicesArr = $services['data'];
-                                    for( $i = 0 ; $i < count($servicesArr) ; $i++ ) {
-                                        echo $servicesArr[$i].', ';
-                                    } 
+                                <?php 
+                                    $services = explode(',',$location->services); 
+                                    foreach ($services as $key => $facility) {
+                                        echo $key !== count($services) - 1 ? $facility . ', ' : $facility;
+                                    }    
                                 ?>
                             </td>
                             <td class="dt-body-center shortcode">
@@ -88,7 +86,7 @@ $locations = $wpdb->get_results($query);
         <tfoot>
             <tr role="row">
                 <th class="manage-column column-cb check-column">
-                    <input id="cb-select-all-1" type="checkbox">
+                    <input id="cb-select-all-2" type="checkbox">
                 </th>
                 <th class="title">Location name</th>
                 <th class="address">Address</th>

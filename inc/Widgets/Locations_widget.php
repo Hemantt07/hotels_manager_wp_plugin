@@ -9,6 +9,7 @@ use Elementor\Controls_Manager;
 class Locations_widget extends Widget_Base {
 
 	public $locations;
+	public $locations_selected;
 
     public function get_name() {
         return 'custom-location-widget';
@@ -29,9 +30,9 @@ class Locations_widget extends Widget_Base {
 
     protected function _register_controls() {
         $this->start_controls_section(
-            'section_content',
+            'section_locations',
             array(
-                'label' => 'Content',
+                'label' => 'Locations',
             )
         );
 
@@ -39,7 +40,7 @@ class Locations_widget extends Widget_Base {
 		global $wpdb;
 		
 		$locations_table = $wpdb->prefix . 'locations_table';
-		$query = "SELECT * FROM $locations_table";
+		$query = "SELECT * FROM $locations_table WHERE `status` = 1";
 		$this->locations = $wpdb->get_results($query);
 
 		if ($this->locations) {
@@ -48,30 +49,28 @@ class Locations_widget extends Widget_Base {
 			}
 		}
 
-		// Location select box
+		// Location 	
 
-        // $this->add_control(
-		// 	'list',
-		// 	[
-		// 		'label' => esc_html__( 'List', 'textdomain' ),
-		// 		'type' => \Elementor\Controls_Manager::REPEATER,
-		// 		'fields' => [
-		// 			[
-		// 				'name'		=> 'location',
-		// 				'type'		=> Controls_Manager::SELECT,
-		// 				'label' 	=> esc_html__( 'Location', 'textdomain' ),
-		// 				'options' 	=> $options,
-		// 				'default' 	=> 'Select location',
-		// 			],
-		// 		],
-		// 		'default' => [
-		// 			[
-		// 				'text' => esc_html__( 'List Item #1', 'textdomain' ),
-		// 			],
-		// 		],
-		// 		'title_field' => '{{{ location }}}',
-		// 	]
-		// );
+		$this->add_control(
+			'list',
+			[
+				'label' => esc_html__( 'Show Locations', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SELECT2,
+				'label_block' => true,
+				'multiple' => true,
+				'options' => $options,
+				'default' => [ 'title', 'description' ],
+			]
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+            'section_styling',
+            array(
+                'label' => 'Styling',
+            )
+        );
 
 		// Columns
 
@@ -150,17 +149,23 @@ class Locations_widget extends Widget_Base {
 			]
 		);
 
-    
         $this->end_controls_section();
     }
 
     protected function render() {
 		$settings = $this->get_settings();
+		global $wpdb;
+
+		$id_list = implode(', ', $settings['list']);
+		$locations_table = $wpdb->prefix . 'locations_table';
+		$query = "SELECT * FROM $locations_table WHERE id IN ($id_list) AND `status` = 1";
+		$this->locations_selected = $wpdb->get_results($query);
+
 		?><style>.location-wrapper{display:flex;flex-wrap:wrap}.location{display: flex;border-radius: 10px;align-items: center;padding: 5px 6px;box-shadow: 0 0 6px #8f8f8f;}.location .imageWrapper {width: 35%;border-radius: 8px;overflow: hidden;margin-right: 13px;}.location .details {width: 65%;}.location p.loc_title{font-size: 17px;margin: 0;}.location p.loc_address{font-size:16px;font-weight:300;margin-bottom: 10px;line-height:1.3;max-width:503px;opacity: .7;}.location .services ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;}.location .services ul li.service{margin:0 10px 10px 0;padding:8px 13px;background:#a59696;border-radius:8px;color:#fff;line-height:1}</style><?php
 
-        if ($this->locations) : ?>
+        if ($this->locations_selected) : ?>
 			<div class="location-wrapper">
-			<?php foreach ($this->locations as $key => $location) : ?>
+			<?php foreach ($this->locations_selected as $key => $location) : ?>
 				<div class="loc-wrapper">
 					<a class="book-now" href="/<?= $settings['link-single'].'?single_loc_id='.$location->id ?>">
 						<div class="location">
@@ -183,9 +188,9 @@ class Locations_widget extends Widget_Base {
 		?><style>.location-wrapper{display:flex;flex-wrap:wrap}.location{display: flex;border-radius: 10px;align-items: center;padding: 5px 6px;box-shadow: 0 0 6px #8f8f8f;}.location .imageWrapper {width: 35%;border-radius: 8px;overflow: hidden;margin-right: 13px;}.location .details {width: 65%;}.location p.loc_title{font-size: 17px;margin: 0;}.location p.loc_address{font-size:16px;font-weight:300;margin-bottom: 10px;line-height:1.3;max-width:503px;opacity: .7;}.location .services ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;}.location .services ul li.service{margin:0 10px 10px 0;padding:8px 13px;background:#a59696;border-radius:8px;color:#fff;line-height:1}</style><?php
 
 
-		if ($this->locations) : ?>
+		if ($this->locations_selected) : ?>
 			<div class="location-wrapper">
-			<?php foreach ($this->locations as $key => $location) : ?>
+			<?php foreach ($this->locations_selected as $key => $location) : ?>
 				<div class="loc-wrapper">
 					<a class="book-now" href="<?= $settings['link-single'].'?single_loc_id='.$location->id ?>">
 						<div class="location">

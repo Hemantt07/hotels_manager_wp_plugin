@@ -45,26 +45,34 @@ class Admin {
 	public function admin_index() {
 		if (isset($_GET['loc_type']) && ($_GET['loc_type'] == 'new')) {
 
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/templates/add_location_page.php';
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/add_location_page.php';
 
 		} else if ( isset($_GET['loc_type']) && ($_GET['loc_type'] == 'edit') && isset($_GET['loc_id']) ) {
 
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/templates/update_location_page.php';
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/update_location_page.php';
 			
 		} else {
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/templates/locations.php';
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/locations.php';
 		}
 	}
 
 	public function services_index() {
-		if (isset($_GET['service_type']) && ($_GET['service_type'] == 'new' || $_GET['service_type'] == 'edit')) {
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/templates/add_service_page.php';
+		if (isset($_GET['service_type']) && ($_GET['service_type'] == 'new' )) {
+
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/add_service_page.php';
+		
+		} else if ( isset($_GET['service_type']) && ($_GET['service_type'] == 'edit') && isset($_GET['service_id']) ) {
+
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/update_service_page.php';
+			
 		} else {
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/templates/services.php';
+		
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/services.php';
+		
 		}
 	}
 
 	public function setting_index() {
-		require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/templates/settings.php';
+		require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/settings.php';
 	}
 }
