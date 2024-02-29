@@ -22,7 +22,7 @@ class SettingLinks{
 
     public function setting_links( $links )
     {
-        $setting_link = '<a href="admin.php?page=location-services-manager">Configure</a>';
+        $setting_link = '<a href="admin.php?page=our-hotels-manager">Configure</a>';
         array_push( $links, $setting_link );
         return $links;
     }

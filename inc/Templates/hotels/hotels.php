@@ -1,49 +1,60 @@
 <?php
 /**
- * @package Custom Elementor Widget
+ * @package Hotel Manager
  *
  * Location Dashboard
  */
 global $wpdb;
 
-$locations_table = $wpdb->prefix . 'locations_table';
-$query = "SELECT * FROM $locations_table";
+$hotels_table = $wpdb->prefix . 'hotels_table';
+$query = "SELECT * FROM $hotels_table";
 $locations = $wpdb->get_results($query);
+
 
 ?>
 <div class="main wrap">
-    <h1 class="wp-heading-inline">Locations Manager</h1>
-    <a href = <?= admin_url('admin.php?page=location-services-manager&loc_type=new') ?> class="page-title-action">Add New Location</a>
+    <h1 class="wp-heading-inline">Hotels List</h1>
+    <a href = <?= admin_url('admin.php?page=our-hotels-manager&req_type=new') ?> class="page-title-action">
+        Add New Hotel
+    </a>
     <div class="form-status"></div>
+    <p>Use shortcode <code class="shortcode">[hotels]</code> to display all the hotels</p>
     <table id="locations-dashboard" class="wp-list-table widefat fixed striped table-view-list locations-services-table">
         <thead>
             <tr role="row">
                 <th class="manage-column column-cb check-column">
                     <input id="cb-select-all-1" type="checkbox">
                 </th>
-                <th class="title">Location name</th>
+                <th class="image">Image</th>
+                <th class="title">Hotel name</th>
                 <th class="address">Address</th>
                 <th class="services">Services</th>
                 <th class="shortcode">Shortcode</th>
                 <th class="status">Status</th>
-                <th class="image">Image</th>
             </tr>
         </thead>
         <tbody id="the-list">
             <?php  if ($locations) : ?>
-                <?php foreach ($locations as $key => $location) : ?>
+                <?php foreach ($locations as $key => $location) : 
+                        $img_url = $location->image_url ?? ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/images/default.jpg';
+                ?>
                     <tr role="row" id="<?= $location->id ?>">
                             <td class="check-column">
                                 <input class="cb-select-1" type="checkbox" name="post[]" value="<?= $location->id ?>">
                             </td>
+
+                            <td class="dt-body-center image">
+                                <img src="<?= $img_url ?>" alt="location_image">
+                            </td>
+
                             <td class="dt-body-center title">
-                                <a href="<?= admin_url('admin.php?page=location-services-manager&loc_type=edit&loc_id='.$location->id) ?>"
+                                <a href="<?= admin_url('admin.php?page=our-hotels-manager&req_type=edit&loc_id='.$location->id) ?>"
                                     class="row-title">
                                     <b><?= $location->title ?></b>
                                 </a>
                                 <div class="row-actions">
                                     <span class="edit">
-                                        <a href="<?= admin_url('admin.php?page=location-services-manager&loc_type=edit&loc_id='.$location->id) ?>">
+                                        <a href="<?= admin_url('admin.php?page=our-hotels-manager&req_type=edit&loc_id='.$location->id) ?>">
                                             Edit
                                         </a>
                                     </span> | 
@@ -54,7 +65,9 @@ $locations = $wpdb->get_results($query);
                                     </span>
                                 </div>
                             </td>
+
                             <td class="dt-body-center address"><?= $location->address ?></td>
+
                             <td class="dt-body-center services">
                                 <?php 
                                     $services = explode(',',$location->services); 
@@ -63,14 +76,15 @@ $locations = $wpdb->get_results($query);
                                     }    
                                 ?>
                             </td>
+
                             <td class="dt-body-center shortcode">
-                                <strong><code class="shortcode"><?= '[location id='.$location->id.' width=auto]' ?></code></strong>
+                                <strong>
+                                    <code class="shortcode"><?= '[location id='.$location->id.' width=auto]' ?></code>
+                                </strong>
                             </td>
+
                             <td class="dt-body-center status <?= ($location->status == '1') ? ('active') : ('inactive')?>">
                                 <?= ($location->status == '1') ? ('Active') : ('Inactive') ?>
-                            </td>
-                            <td class="dt-body-center image">
-                                <img src="<?= ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/images/default.webp' ?>" alt="location_image">
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -78,7 +92,7 @@ $locations = $wpdb->get_results($query);
                 <tr role="row" class="no-data">
                     <td colspan="7">
                         <span>There are no Locations registered</span>
-                        <a href = <?= admin_url('admin.php?page=location-services-manager&loc_type=new') ?>>Add New Location</a>
+                        <a href = <?= admin_url('admin.php?page=our-hotels-manager&req_type=new') ?>>Add New Location</a>
                     </td>
                 </tr>
             <?php endif; ?>
@@ -88,12 +102,12 @@ $locations = $wpdb->get_results($query);
                 <th class="manage-column column-cb check-column">
                     <input id="cb-select-all-2" type="checkbox">
                 </th>
-                <th class="title">Location name</th>
+                <th class="shortcode">Image</th>
+                <th class="title">Hotel name</th>
                 <th class="address">Address</th>
                 <th class="services">Services</th>
                 <th class="shortcode">Shortcode</th>
                 <th class="status">Status</th>
-                <th class="shortcode">Image</th>
             </tr>
         </tfoot>
     </table>

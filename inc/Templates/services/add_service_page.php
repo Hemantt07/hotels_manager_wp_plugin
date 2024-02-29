@@ -33,7 +33,7 @@
                     <input type="checkbox" id="status" class="switch"/><label for="status"></label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-default">Add location</button>
+            <button type="submit" class="button button-primary">Add location</button>
         </div>
 
         <div id="loader"><div></div></div>

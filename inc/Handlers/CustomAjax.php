@@ -2,12 +2,12 @@
 /**
  * Admin ajax 
  *
- * @package  Custom plugin
+ * @package Hotel Manager
  */
 
-namespace LSM\Base;
+namespace LSM\Handlers;
 
-use LSM\Base\Publish;
+use LSM\Handlers\Publish;
 
 class CustomAjax {
 

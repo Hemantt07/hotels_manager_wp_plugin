@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Custom Elementor Widget
+ * @package Hotel Manager
  *
  */
 namespace LSM\Base;
@@ -15,7 +15,7 @@ class Activate {
 
     public function createTable() {
         global $wpdb;
-        $table1 = $wpdb->prefix . 'locations_table';
+        $table1 = $wpdb->prefix . 'hotels_table';
         $table2 = $wpdb->prefix . 'services_table';
 
         $sql1 = "CREATE TABLE IF NOT EXISTS $table1 (

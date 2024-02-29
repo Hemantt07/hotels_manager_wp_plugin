@@ -3,26 +3,26 @@
 global $wpdb;
 
 if ( isset($_GET['loc_id']) ) {
-    $locations_table = $wpdb->prefix . 'locations_table';
-    $query = "SELECT * FROM $locations_table WHERE `id` = " . $_GET['loc_id'];
+    $hotels_table = $wpdb->prefix . 'hotels_table';
+    $query = "SELECT * FROM $hotels_table WHERE `id` = " . $_GET['loc_id'];
     $location = $wpdb->get_results($query)[0];
 } else {
     $location = [];
 }
-
+$img_url = $location->image_url ?? ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/images/default.jpg';
 $services_table = $wpdb->prefix . 'services_table';
 $query = "SELECT * FROM $services_table";
 $services = $wpdb->get_results($query);
 ?>
 <div class="main wrap">
     <h1 class="wp-heading-inline">Update (<?= $location->title ?>)</h1>
-    <a href="http://development.com/wp-admin/admin.php?page=location-services-manager" class="page-title-action">Locations Dashboard</a>
+    <a href="http://development.com/wp-admin/admin.php?page=our-hotels-manager" class="page-title-action">Hotels Dashboard</a>
     <div class="form-status"></div>
 
     <form id="update-location" class="location_service_form" data-id="<?= $_GET['loc_id'] ?>">
         <div class="left">
             <div class="form-group location-title">
-                <label class="main-label" for="location-title">Location Title :</label>
+                <label class="main-label" for="location-title">Hotel Title :</label>
                 <input type="text" class="form-control" id="location-title" name="location-title" value="<?= $location->title ?>">
                 <div class="required">Required*</div>
             </div>
@@ -49,13 +49,13 @@ $services = $wpdb->get_results($query);
                     <input type="checkbox" id="status" class="switch" <?= ($location->status == '1' ) ? 'checked' : ''; ?>/><label for="status"></label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-default">Update location</button>
+            <button type="submit" class="button button-primary">Update location</button>
         </div>
         <div class="right">
             <div class="imageWrap">
-                <img src="<?= ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/images/default.webp' ?>" alt="location_image">
-                <input type="file" name="location_image" id="location_image"  accept='.jpeg, .gif, .png, .apng, .svg, .bmp, .bmp, .png , .webp'>
-                <label for="location_image" class="upload-picture btn-default">Upload Image</label>    
+                <img src="<?= $img_url ?>" alt="location_image">
+                <input type="hidden" name="location_image"  id="location_image" value="<?= $img_url ?>">
+                <button type="button" class="upload-picture page-title-action">Upload Image</button>    
             </div>
         </div>
 

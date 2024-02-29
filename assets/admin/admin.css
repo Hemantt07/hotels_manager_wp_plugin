@@ -1,0 +1,352 @@
+#toplevel_page_our-hotels-manager ul.wp-submenu {
+  padding: 10px 0 0 0;
+}
+
+#toplevel_page_our-hotels-manager ul.wp-submenu li:last-child a {
+  background: #036d00;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  padding: 14px 12px;
+}
+
+#adminmenu .wp-menu-image.dashicons-before.dashicons-hotels {
+  background-image: url(../images/admin-icon.png);
+  background-size: 70%;
+  background-origin: padding-box;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.wrap {
+  padding-right: 30px;
+}
+
+.wrap .form-status.updated,
+.wrap .form-status.error {
+  margin: 10px 0px;
+  padding: 10px;
+  line-height: 1;
+}
+
+#setting-error-tgmpa {
+  display: none;
+}
+
+.locations-services-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.locations-services-table tr {
+  margin: 10px 0;
+}
+
+.locations-services-table td.active {
+  color: #008000;
+  font-weight: bold;
+}
+
+.locations-services-table td.inactive {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.locations-services-table .check-column {
+  padding: 11px 0 8px 3px;
+}
+
+.locations-services-table .check-column input {
+  margin: 0 0 0 8px;
+}
+
+.locations-services-table .page-title-action {
+  display: block;
+  width: max-content;
+  margin: auto;
+}
+
+.locations-services-table th {
+  font-weight: bold;
+}
+
+.locations-services-table th.status {
+  width: 7%;
+}
+
+.locations-services-table th.shortcode {
+  width: 15%;
+}
+
+.locations-services-table th.title {
+  width: auto;
+}
+
+.locations-services-table th.address,
+.locations-services-table th.services {
+  width: 20%;
+}
+
+code.shortcode {
+  margin: 0 1px 0 -4px;
+  cursor: pointer;
+  position: relative;
+}
+
+code.shortcode span.title {
+  position: absolute;
+  bottom: 105%;
+  left: 0;
+  width: max-content;
+  background: #2e2e2e;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+.location_service_form {
+  display: flex;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0 0 17px 0px #dfdfdf;
+  padding: 30px 20px;
+  margin-top: 20px;
+  margin-left: -10px;
+}
+
+.location_service_form .left,
+.location_service_form .right {
+  width: 50%;
+}
+
+.location_service_form .right .imageWrap {
+  width: 100%;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  justify-content: center;
+  align-items: center;
+}
+
+.location_service_form .right .imageWrap img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  height: auto;
+  max-width: 500px;
+  margin: 0;
+  max-height: 300px;
+  border: 1px solid #dfdfdf;
+  box-shadow: 0 0 17px 0px #dfdfdf;
+}
+
+.location_service_form .right .imageWrap label.upload-picture {
+  margin: 15px auto;
+  display: block;
+  width: max-content;
+}
+
+.location_service_form .form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  width: 600px;
+  position: relative;
+}
+
+.location_service_form .checkbox.form-group {
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.location_service_form .status.form-group {
+  justify-content: start;
+}
+
+.location_service_form .form-group .main-label {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.3;
+  width: 30%;
+}
+
+.location_service_form .checkbox.form-group .main-label {
+  margin-bottom: 1.5rem;
+}
+
+td.dt-body-center.image img,
+.location_service_form .form-group textarea,
+.location_service_form .form-group input[type="text"] {
+  width: 70%;
+}
+
+.location_service_form .form-group textarea,
+.location_service_form .form-group input[type="text"]:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.location_service_form .services {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.location_service_form .services label {
+  margin-right: 20px;
+}
+
+.location_service_form .btn-default {
+  margin-top: 10px;
+  font-size: 16px;
+  background: #2271b1;
+  color: #fff;
+  padding: 7px 15px;
+  border: 1px solid #2271b1;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.location_service_form #status:checked::before {
+  display: none;
+}
+
+.location_service_form .checkbox-wrapper #status {
+  display: none;
+}
+
+.location_service_form .checkbox-wrapper label {
+  cursor: pointer;
+  width: 40px;
+  height: calc(40px / 2);
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+.location_service_form .checkbox-wrapper label:after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: 2.5%;
+  width: calc(50% - 5%);
+  height: calc(100% - 11%);
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+.location_service_form .checkbox-wrapper input:checked + label {
+  background: #31d129;
+}
+
+.location_service_form .checkbox-wrapper input:checked + label:after {
+  left: calc(100% - 2.5%);
+  transform: translateX(-100%);
+}
+
+.location_service_form .checkbox-wrapper label:active:after {
+  width: 55%;
+}
+
+.location_service_form .required {
+  display: none;
+}
+
+.location_service_form .locFormError textarea,
+.location_service_form .locFormError input[type="checkbox"],
+.location_service_form .locFormError input[type="text"] {
+  border: 1px solid #ff8989;
+}
+
+.location_service_form .locFormError .required {
+  display: block;
+  position: absolute;
+  right: 10px;
+  padding-left: 10px;
+  color: #f00;
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #20212491;
+  z-index: 9999;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#loader div {
+  border: 4px solid transparent;
+  border-top: 4px solid #2271b1;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: loader 2s linear infinite;
+}
+
+tr.no-data td {
+  text-align: center;
+  padding: 20px 0;
+}
+
+tr.no-data td span {
+  font-size: 20px;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.mt-0 {
+  margin-top: 0% !important;
+}
+
+#add-faciltiy {
+  padding: 6px;
+  font-size: 14px;
+  margin-bottom: 1.5rem;
+  margin-left: 0.19rem;
+}
+
+#facilities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#facilities-list .facility {
+  border: 0.01px solid #808080;
+  padding: 3px 4px 3px 8px;
+  border-radius: 4px;
+  background: #e0e0e0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+#facilities-list .facility img {
+  font-size: 17px;
+  margin-left: 7px;
+  cursor: pointer;
+  width: 20px;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

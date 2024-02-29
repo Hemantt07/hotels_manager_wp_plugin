@@ -1,16 +1,18 @@
 {
-    "name": "hemant/virtual-closets",
-    "description": "Plugin for Virtual Closets",
-    "type": "project",
-    "license": "GPL",
-    "authors": [
-        {
-            "name": "Hemant Dhiman"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {},
-    "autoload": {
-        "psr-4": {"LSM\\": "./inc"}
+  "name": "hemant/virtual-closets",
+  "description": "Plugin for Virtual Closets",
+  "type": "project",
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "Hemant Dhiman"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "LSM\\": "./inc"
+    }
+  }
 }

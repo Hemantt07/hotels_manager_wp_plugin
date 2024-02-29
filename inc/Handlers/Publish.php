@@ -1,9 +1,9 @@
 <?php
 /**
- * @package Custom Elementor Widget
+ * @package Hotel Manager
  *
  */
-namespace LSM\Base;
+namespace LSM\Handlers;
 
 use LSM\Widgets\Locations_widget;
 use LSM\Widgets\Services_widget;
@@ -16,7 +16,7 @@ class Publish {
     public static function create_location ( $data, $img ) {
         global $wpdb;
 
-        $locations_table = $wpdb->prefix . 'locations_table';
+        $hotels_table = $wpdb->prefix . 'hotels_table';
 
         if (isset($img) && $img['error'] === 0) {
             $uploaded_image = wp_handle_upload($img, array('test_form' => false));
@@ -41,7 +41,7 @@ class Publish {
 
 
         try {
-            $wpdb->insert($locations_table, $insertableData);
+            $wpdb->insert($hotels_table, $insertableData);
 
             if ($wpdb->last_error) {
                 $status = 'failed';
@@ -65,11 +65,12 @@ class Publish {
     public static function update_location ( $data ) {
         global $wpdb;
 
-        $locations_table = $wpdb->prefix . 'locations_table';
+        $hotels_table = $wpdb->prefix . 'hotels_table';
 
         $updateData = [
             'title'     => $data['title'],
             'address'   => $data['address'],
+            'image_url' => $data['image_file'],
             'services'  => implode(',',$data['services'] ),
             'status'    => $data['status'] == 'true' ? '1' : '0'
         ];
@@ -79,7 +80,7 @@ class Publish {
         ];
 
         try {
-            $updated = $wpdb->update($locations_table, $updateData, $where);
+            $updated = $wpdb->update($hotels_table, $updateData, $where);
 
             if ($wpdb->last_error) {
                 $status = 'failed';
@@ -103,12 +104,12 @@ class Publish {
     public static function delete_location ( $loc_id ) {
         global $wpdb;
 
-        $locations_table = $wpdb->prefix . 'locations_table';
+        $hotels_table = $wpdb->prefix . 'hotels_table';
 
         $where =['id' => $loc_id];
 
         try {
-            $deleted = $wpdb->delete($locations_table, $where);
+            $deleted = $wpdb->delete($hotels_table, $where);
 
             if ($deleted == false) {
                 $status = 'failed';

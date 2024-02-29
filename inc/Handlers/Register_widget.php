@@ -1,9 +1,9 @@
 <?php
 /**
- * @package Custom Elementor Widget
+ * @package Hotel Manager
  *
  */
-namespace LSM\Base;
+namespace LSM\Handlers;
 use LSM\Widgets\Locations_widget;
 use LSM\Widgets\Services_widget;
 use LSM\Widgets\Locations_list;

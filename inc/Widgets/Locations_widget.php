@@ -39,8 +39,8 @@ class Locations_widget extends Widget_Base {
 		$options;
 		global $wpdb;
 		
-		$locations_table = $wpdb->prefix . 'locations_table';
-		$query = "SELECT * FROM $locations_table WHERE `status` = 1";
+		$hotels_table = $wpdb->prefix . 'hotels_table';
+		$query = "SELECT * FROM $hotels_table WHERE `status` = 1";
 		$this->locations = $wpdb->get_results($query);
 
 		if ($this->locations) {
@@ -157,8 +157,8 @@ class Locations_widget extends Widget_Base {
 		global $wpdb;
 
 		$id_list = implode(', ', $settings['list']);
-		$locations_table = $wpdb->prefix . 'locations_table';
-		$query = "SELECT * FROM $locations_table WHERE id IN ($id_list) AND `status` = 1";
+		$hotels_table = $wpdb->prefix . 'hotels_table';
+		$query = "SELECT * FROM $hotels_table WHERE id IN ($id_list) AND `status` = 1";
 		$this->locations_selected = $wpdb->get_results($query);
 
 		?><style>.location-wrapper{display:flex;flex-wrap:wrap}.location{display: flex;border-radius: 10px;align-items: center;padding: 5px 6px;box-shadow: 0 0 6px #8f8f8f;}.location .imageWrapper {width: 35%;border-radius: 8px;overflow: hidden;margin-right: 13px;}.location .details {width: 65%;}.location p.loc_title{font-size: 17px;margin: 0;}.location p.loc_address{font-size:16px;font-weight:300;margin-bottom: 10px;line-height:1.3;max-width:503px;opacity: .7;}.location .services ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;}.location .services ul li.service{margin:0 10px 10px 0;padding:8px 13px;background:#a59696;border-radius:8px;color:#fff;line-height:1}</style><?php
@@ -170,7 +170,7 @@ class Locations_widget extends Widget_Base {
 					<a class="book-now" href="/<?= $settings['link-single'].'?single_loc_id='.$location->id ?>">
 						<div class="location">
 							<div class="imageWrapper">
-								<img src="<?= ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/images/default.webp' ?>" alt="location_image">
+								<img src="<?= ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/images/default.jpg' ?>" alt="location_image">
 							</div>
 							<div class="details">
 								<p class="loc_address"><?= $location->title ?></p>
@@ -187,7 +187,6 @@ class Locations_widget extends Widget_Base {
     protected function _content_template() {
 		?><style>.location-wrapper{display:flex;flex-wrap:wrap}.location{display: flex;border-radius: 10px;align-items: center;padding: 5px 6px;box-shadow: 0 0 6px #8f8f8f;}.location .imageWrapper {width: 35%;border-radius: 8px;overflow: hidden;margin-right: 13px;}.location .details {width: 65%;}.location p.loc_title{font-size: 17px;margin: 0;}.location p.loc_address{font-size:16px;font-weight:300;margin-bottom: 10px;line-height:1.3;max-width:503px;opacity: .7;}.location .services ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;}.location .services ul li.service{margin:0 10px 10px 0;padding:8px 13px;background:#a59696;border-radius:8px;color:#fff;line-height:1}</style><?php
 
-
 		if ($this->locations_selected) : ?>
 			<div class="location-wrapper">
 			<?php foreach ($this->locations_selected as $key => $location) : ?>
@@ -195,7 +194,7 @@ class Locations_widget extends Widget_Base {
 					<a class="book-now" href="<?= $settings['link-single'].'?single_loc_id='.$location->id ?>">
 						<div class="location">
 							<div class="imageWrapper">
-								<img src="<?= ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/images/default.webp' ?>" alt="location_image">
+								<img src="<?= ELEMENTOR_WIDGET_PLUGIN_URL . 'assets/images/default.jpg' ?>" alt="location_image">
 							</div>
 							<div class="details">
 								<p class="loc_address"><?= $location->title ?></p>

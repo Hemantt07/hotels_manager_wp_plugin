@@ -48,7 +48,7 @@ if ( isset($_GET['service_id']) ) {
                     <input type="checkbox" id="status" class="switch"  <?= ($service->status == '1' ) ? 'checked' : ''; ?>/><label for="status"></label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-default">Update location</button>
+            <button type="submit" class="button button-primary">Update location</button>
         </div>
 
         <div id="loader"><div></div></div>

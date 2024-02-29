@@ -1,6 +1,6 @@
 <?php 
 /**
- * @package  Calculaor
+ * @package Hotel Manager
  * Admin for pages
  */
 namespace LSM\Pages;
@@ -13,66 +13,66 @@ class Admin {
 
 	public function add_admin_pages() {
 		add_menu_page( 
-			'Location & Services Manager', 
-			'Location & Services Manager', 
+			'Hotels', 
+			'Hotels', 
 			'manage_options', 
-			'location-services-manager', 
+			'hotels-manager', 
 			array( $this, 'admin_index' ), 
-			'dashicons-location', 110 
+			'dashicons-hotels', 50 
 		);
 
 		add_submenu_page( 
-			'location-services-manager', 
-			'Sevices manager', 
-			'Sevices manager', 
-			'manage_options', 
-			'services-manager', 
-			array( $this, 'services_index' ), 
+			'hotels-manager',
+			'Our Hotels',
+			'Our Hotels',
+			'manage_options',
+			'our-hotels-manager',
+			array( $this, 'location_index' ), 
 			1,
 		);
 
 		add_submenu_page( 
-			'location-services-manager', 
-			'Settings', 
-			'Settings', 
+			'hotels-manager', 
+			'Services manager', 
+			'Services manager', 
 			'manage_options', 
-			'settings', 
-			array( $this, 'setting_index' ), 
+			'services-manager', 
+			array( $this, 'services_index' ), 
 			2,
 		);
 	}
 
-	public function admin_index() {
-		if (isset($_GET['loc_type']) && ($_GET['loc_type'] == 'new')) {
+	function admin_index() {
+		require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/admin.php';
+	}
 
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/add_location_page.php';
+	public function location_index() {
+		if (isset($_GET['req_type']) && ($_GET['req_type'] == 'new')) {
 
-		} else if ( isset($_GET['loc_type']) && ($_GET['loc_type'] == 'edit') && isset($_GET['loc_id']) ) {
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/hotels/add_hotel_page.php';
 
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/update_location_page.php';
+		} else if ( isset($_GET['req_type']) && ($_GET['req_type'] == 'edit') && isset($_GET['loc_id']) ) {
+
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/hotels/update_hotel_page.php';
 			
 		} else {
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/locations.php';
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/hotels/hotels.php';
 		}
 	}
 
 	public function services_index() {
-		if (isset($_GET['service_type']) && ($_GET['service_type'] == 'new' )) {
+		if (isset($_GET['req_type']) && ($_GET['req_type'] == 'new' )) {
 
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/add_service_page.php';
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/services/add_service_page.php';
 		
-		} else if ( isset($_GET['service_type']) && ($_GET['service_type'] == 'edit') && isset($_GET['service_id']) ) {
+		} else if ( isset($_GET['req_type']) && ($_GET['req_type'] == 'edit') && isset($_GET['service_id']) ) {
 
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/update_service_page.php';
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/services/update_service_page.php';
 			
 		} else {
 		
-			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/services.php';
+			require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/services/services.php';
 		
 		}
-	}
-
-	public function setting_index() {
-		require_once ELEMENTOR_WIDGET_PLUGIN_PATH . 'inc/Templates/settings.php';
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Custom Elementor Widget
+ * @package Hotel Manager
  *
  * Services Dashboard
  */
@@ -12,7 +12,7 @@ $services = $wpdb->get_results($query);
 ?>
 <div class="main wrap">
     <h1 class="wp-heading-inline">Services Manager</h1>
-    <a href=<?= admin_url('admin.php?page=services-manager&service_type=new') ?> class="page-title-action">Add New Service</a>
+    <a href=<?= admin_url('admin.php?page=services-manager&req_type=new') ?> class="page-title-action">Add New Service</a>
     <table id="services-dashboard" class="wp-list-table widefat fixed striped table-view-list locations-services-table">
         <thead>
             <tr role="row">
@@ -32,13 +32,13 @@ $services = $wpdb->get_results($query);
                             <input class="cb-select-1" type="checkbox" name="post[]" value="<?= $service->id ?>">
                         </td>
                         <td class="dt-body-center title">
-                            <a href="<?= admin_url('admin.php?page=services-manager&service_type=edit&service_id='.$service->id) ?>"
+                            <a href="<?= admin_url('admin.php?page=services-manager&req_type=edit&service_id='.$service->id) ?>"
                                 class="row-title">
                                 <b><?= $service->service_data ?></b>
                             </a>
                             <div class="row-actions">
                                 <span class="edit">
-                                    <a href="<?= admin_url('admin.php?page=services-manager&service_type=edit&service_id='.$service->id) ?>">
+                                    <a href="<?= admin_url('admin.php?page=services-manager&req_type=edit&service_id='.$service->id) ?>">
                                         Edit
                                     </a>
                                 </span> | 
@@ -66,7 +66,7 @@ $services = $wpdb->get_results($query);
                 <tr role="row" class="no-data">
                     <td colspan="7">
                         <span>There are no Services registered</span>
-                        <a href = <?= admin_url('admin.php?page=services-manager&service_type=new') ?>>Add New Service</a>
+                        <a href = <?= admin_url('admin.php?page=services-manager&req_type=new') ?>>Add New Service</a>
                     </td>
                 </tr>
             <?php endif; ?>
